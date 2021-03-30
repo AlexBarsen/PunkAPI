@@ -1,0 +1,122 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.deleteBookmark = exports.addBookmark = exports.getSearchResultsPage = exports.loadSelectedBeer = exports.loadSearchResults = exports.loadRandomBeer = exports.state = void 0;
+
+var _helpers = require("./helpers.js");
+
+const state = {
+  beer: {},
+  search: {
+    query: "",
+    results: [],
+    page: 1,
+    resultsPerPage: 5
+  },
+  bookmarks: []
+};
+exports.state = state;
+
+const createBeerObj = function (data) {
+  const beer = data[0];
+  return {
+    id: beer.id,
+    name: beer.name,
+    tagline: beer.tagline,
+    first_brewed: beer.first_brewed,
+    description: beer.description,
+    abv: beer.abv,
+    ph: beer.ph,
+    img: beer.image_url,
+    food_pairing: beer.food_pairing,
+    ingredients: beer.ingredients,
+    brewers_tips: beer.brewers_tips,
+    ingredient: {
+      hops: [],
+      malt: [],
+      yeast: ""
+    }
+  };
+};
+
+const loadRandomBeer = async function () {
+  try {
+    const data = await (0, _helpers.AJAX)(`${_helpers.API_URL}/random`);
+    state.beer = createBeerObj(data);
+  } catch (err) {
+    alert(err);
+  }
+};
+
+exports.loadRandomBeer = loadRandomBeer;
+
+const loadSearchResults = async function (query) {
+  try {
+    const data = await (0, _helpers.AJAX)(`${_helpers.API_URL}?beer_name=${query}`);
+    state.search.results = data.map(beer => {
+      return {
+        id: beer.id,
+        name: beer.name,
+        abv: beer.abv,
+        img: beer.image_url
+      };
+    });
+  } catch (err) {
+    alert(err);
+  }
+};
+
+exports.loadSearchResults = loadSearchResults;
+
+const loadSelectedBeer = async function (selected) {
+  try {
+    const data = await (0, _helpers.AJAX)(`${_helpers.API_URL}/${selected}`);
+    state.beer = createBeerObj(data);
+    if (state.bookmarks.some(el => el.id === parseInt(selected))) state.beer.bookmarked = true;else state.beer.bookmarked = false;
+  } catch (err) {
+    alert(err);
+  }
+};
+
+exports.loadSelectedBeer = loadSelectedBeer;
+
+const getSearchResultsPage = function (page = state.search.page) {
+  state.search.page = page;
+  const start = (page - 1) * state.search.resultsPerPage; // 0
+
+  const end = page * state.search.resultsPerPage; // 5
+
+  return state.search.results.slice(start, end);
+};
+
+exports.getSearchResultsPage = getSearchResultsPage;
+
+const persistBookmarks = function () {
+  localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+};
+
+const addBookmark = function (beer) {
+  state.bookmarks.push(beer);
+  if (beer.id === state.beer.id) state.beer.bookmarked = true;
+  persistBookmarks();
+};
+
+exports.addBookmark = addBookmark;
+
+const deleteBookmark = function (id) {
+  const index = state.bookmarks.findIndex(el => el.id === id);
+  state.bookmarks.splice(index, 1);
+  if (id === state.beer.id) state.beer.bookmarked = false;
+  persistBookmarks();
+};
+
+exports.deleteBookmark = deleteBookmark;
+
+const init = function () {
+  const storage = localStorage.getItem("bookmarks");
+  if (storage) state.bookmarks = JSON.parse(storage);
+};
+
+init();

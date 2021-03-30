@@ -1,0 +1,19 @@
+.beer {
+  animation: fadeIn ease-in 1s;
+  border-radius: 1.5rem;
+  margin: auto;
+  text-align: center;
+  position: relative;
+
+  &__name {
+    font-size: 1.8rem;
+  }
+  &__image {
+    display: inline-block;
+    width: auto;
+    height: 85%;
+  }
+  &__abv {
+    font-size: 2rem;
+  }
+}

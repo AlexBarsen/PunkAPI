@@ -1,0 +1,12 @@
+.heading-primary {
+  text-align: center;
+  &--main {
+    text-transform: uppercase;
+    display: block;
+    font-size: 3rem;
+  }
+  &--sub {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+  }
+}

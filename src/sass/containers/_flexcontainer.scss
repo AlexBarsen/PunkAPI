@@ -1,0 +1,25 @@
+.flexbox--container {
+  display: flex;
+  justify-content: space-around;
+  color: black;
+}
+
+.results--container {
+  width: 25%;
+  background-color: $color-green-1;
+  border: 3px solid black;
+}
+
+.beer--container {
+  width: 30%;
+  background-color: $color-green-1;
+  border: 3px solid black;
+}
+
+.information--container {
+  width: 35%;
+  height: auto;
+  padding: 0 1rem 1rem 1rem;
+  background-color: $color-green-1;
+  border: 0.3rem solid black;
+}

@@ -1,0 +1,85 @@
+.btn {
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  outline: none;
+  background-color: $color-yellow;
+
+  &:hover span {
+    padding-right: 25px;
+  }
+
+  & span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  & span:after {
+    content: "\00bb";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  &:hover span {
+    padding-right: 25px;
+  }
+
+  &:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+}
+
+.btn--inline {
+  height: 3rem;
+  width: 7rem;
+  font-size: 1.5rem;
+  border-radius: 2rem;
+  background-color: $color-yellow;
+  outline: none;
+  margin-bottom: 0.5rem;
+}
+
+.pagination__btn--prev {
+  float: left;
+  width: auto;
+  padding: 0.2rem 0.8rem 0.2rem 0.5rem;
+  margin-left: 1rem;
+}
+
+.pagination__btn--next {
+  width: auto;
+  padding: 0.2rem 0.5rem 0.2rem 0.8rem;
+  float: right;
+  margin-right: 1rem;
+}
+
+.bookmark {
+  background-color: $color-blue;
+  outline: none;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 5rem;
+  float: right;
+  position: absolute;
+  top: 2.5rem;
+  right: 1rem;
+}
+
+.fa-arrow-circle {
+  &-right {
+    padding: 0.3rem;
+  }
+  &-left {
+    padding: 0.3rem;
+  }
+}
+
+button {
+  cursor: pointer;
+}

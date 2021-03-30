@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="59f5d6fd590d1fb4fbfc3ba64ea5c14d" rel="stylesheet">
+    <link rel="stylesheet" href="976189e61292942500389c115c28f18c">
+    <link rel="stylesheet" href="c68b365572156456a8a8a4bc2721bd5c" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <title>Punk API</title>
+    <script defer="" src="9e58044eb023ac0cb64933ff0bfdef79"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__text-box">
+        <h1 class="heading-primary u-margin-bottom-medium">
+          <span class="heading-primary--main">Punk Beer</span>
+          <span class="heading-primary--sub">a collection of BrewBeers</span>
+        </h1>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="bookmarked">
+        <button class="bookmarked__btn bookmarked__btn--bookmark">
+          <i class="fas fa-bookmark fa-lg"></i>Bookmarked Beers
+        </button>
+        <div class="bookmarks">
+          <ul class="bookmarks__list">
+            <div class="message">
+              <p>
+                No bookmarks yet, bookmark a beer and it will appear here 🙂
+              </p>
+            </div>
+          </ul>
+        </div>
+      </div>
+
+      <form class="search u-margin-bottom-medium">
+        <input type="text" class="search__field" placeholder="Search for a brew beer">
+
+        <button class="btn search__btn">
+          <span>Search</span>
+        </button>
+        <button class="btn btn--random"><span>Random Beer</span></button>
+        <button class="btn btn--reset"><i class="fas fa-sync"></i></button>
+      </form>
+
+      <div class="flexbox--container">
+        <div class="results--container">
+          <div class="title u-margin-bottom-small">Search Results</div>
+          <ul class="search--results">
+            <div class="before--content">
+              Search for a beer to, the results will appear here.
+              <span class="emoji">🍻</span>
+            </div>
+          </ul>
+          <div class="pagination"></div>
+        </div>
+        <div class="beer--container">
+          <div class="before--content">
+            Select a searched beer or generate a random one to display the
+            corresponding image <span class="emoji">🍺</span>
+          </div>
+        </div>
+        <div class="information--container">
+          <div class="title u-margin-bottom-small">Beer Information</div>
+          <div class="beer--information">
+            <div class="before--content">
+              Select a searched beer or generate a random one to display the
+              corresponding information <span class="emoji">📇</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

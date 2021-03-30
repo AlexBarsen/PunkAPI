@@ -1,0 +1,13 @@
+.search {
+  text-align: center;
+  width: 96.5%;
+  &__field {
+    outline: none;
+    width: 20rem;
+    height: 3rem;
+    border-radius: 5rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+    background-color: $color-yellow;
+  }
+}

@@ -1,0 +1,63 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _View = _interopRequireDefault(require("./View.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+class SearchView extends _View.default {
+  constructor(...args) {
+    super(...args);
+
+    _defineProperty(this, "_parentElement", document.querySelector(".search--results"));
+  }
+
+  getQuery() {
+    const query = document.querySelector(".search__field").value;
+    this.clearInput();
+    return query;
+  }
+
+  clearInput() {
+    const inputValue = document.querySelector(".search__field");
+    inputValue.value = "";
+  }
+
+  addHandlerSearch(handler) {
+    const searchInput = document.querySelector(".search");
+    searchInput.addEventListener("submit", function (e) {
+      e.preventDefault();
+      handler();
+    });
+  }
+
+  addHandlerSelected(handler) {
+    this._parentElement.addEventListener("click", function (e) {
+      const clicked = e.target.closest(".preview__box");
+      if (!clicked) return;
+      const selected = clicked.dataset.id;
+      handler(selected);
+    });
+  }
+
+  addHandlerReset(handler) {
+    const reset = document.querySelector(".btn--reset");
+    reset.addEventListener("click", function (e) {
+      const clicked = e.target.closest(".btn--reset");
+      if (!clicked) return;
+      e.preventDefault();
+      handler();
+    });
+  }
+
+}
+
+var _default = new SearchView();
+
+exports.default = _default;

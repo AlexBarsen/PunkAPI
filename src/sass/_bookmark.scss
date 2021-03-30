@@ -1,0 +1,52 @@
+.bookmarked {
+  position: absolute;
+  width: auto;
+  display: block;
+  top: 1rem;
+  right: 3.2rem;
+  &__btn {
+    padding: 0.5rem;
+    outline: none;
+    background-color: $color-yellow;
+
+    &--bookmark {
+      border-radius: 1rem;
+      border: 2px solid black;
+      cursor: default;
+    }
+  }
+  .preview {
+    animation: none;
+  }
+}
+
+.fa-lg {
+  padding: 0.2rem;
+}
+
+.message {
+  text-align: center;
+  p {
+    font-size: 2rem;
+  }
+}
+
+.bookmarks {
+  display: block;
+  opacity: 0;
+  background-color: $color-yellow;
+  position: absolute;
+  border-radius: 1rem;
+  right: 0;
+  width: 25rem;
+  visibility: hidden;
+  &:hover {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.bookmarked__btn:hover ~ .bookmarks {
+  opacity: 1;
+  visibility: visible;
+}

@@ -1,0 +1,58 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _View = _interopRequireDefault(require("./View.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+class PaginationView extends _View.default {
+  constructor(...args) {
+    super(...args);
+
+    _defineProperty(this, "_parentElement", document.querySelector(".pagination"));
+  }
+
+  addHandlerClick(handler) {
+    this._parentElement.addEventListener("click", function (e) {
+      const btn = e.target.closest(".btn--inline");
+      if (!btn) return;
+      const goToPage = +btn.dataset.goto;
+      handler(goToPage);
+    });
+  }
+
+  _generateMarkup() {
+    const currPage = this._data.page;
+    const numPages = Math.ceil(this._data.results.length / this._data.resultsPerPage); // P1 and there are other pages
+
+    if (currPage === 1 && numPages > 1) return `<button data-goto="${currPage + 1}" class="btn--inline pagination__btn--next">Page ${currPage + 1}<i class="fas fa-arrow-circle-right"></i></button>`; // Last P
+
+    if (currPage === numPages && numPages > 1) {
+      return `<button data-goto="${currPage - 1}" class="btn--inline pagination__btn--prev"><i class="fas fa-arrow-circle-left"></i>Page ${currPage - 1}</button>`;
+    } // Other P
+
+
+    if (currPage < numPages) {
+      return `<button data-goto="${currPage - 1}" class="btn--inline pagination__btn--prev"><i class="fas fa-arrow-circle-left"></i>Page ${currPage - 1}</button>
+      <button data-goto="${currPage + 1}" class="btn--inline pagination__btn--next">Page ${currPage + 1}<i class="fas fa-arrow-circle-right"></i></button>`;
+    } // P1 and there are no other pages
+
+
+    return ``;
+  }
+
+  _resetMarkup() {
+    return ``;
+  }
+
+}
+
+var _default = new PaginationView();
+
+exports.default = _default;

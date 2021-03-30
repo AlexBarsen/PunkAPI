@@ -1,0 +1,58 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _View = _interopRequireDefault(require("./View.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+class BeerView extends _View.default {
+  constructor(...args) {
+    super(...args);
+
+    _defineProperty(this, "_parentElement", document.querySelector(".beer--container"));
+  }
+
+  addHandlerRandom(handler) {
+    const randomBtn = document.querySelector(".btn--random");
+    randomBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      handler();
+    });
+  }
+
+  addHandlerBookmark(handler) {
+    this._parentElement.addEventListener("click", function (e) {
+      const btn = e.target.closest(".bookmark");
+      if (!btn) return;
+      handler();
+    });
+  }
+
+  _generateMarkup() {
+    return `
+    <div class="beer">
+        <div class="beer__name u-margin-bottom-medium">${this._data.name}
+        <button class="bookmark">${this._data.bookmarked ? `<i class="fas fa-bookmark fa-2x"></i>` : `<i class="far fa-bookmark fa-2x"></i>`}</button></div>
+        <img class="beer__image u-margin-bottom-medium" src="${this._data.img}" alt="No Image Available" />
+        <div class="beer__abv">${this._data.abv}% Alcohol</div>
+    </div>`;
+  }
+
+  _resetMarkup() {
+    return `<div class="before--content animated">
+    Select a searched beer or generate a random one to display the
+    corresponding image <span class="emoji">🍺</span>
+    </div>`;
+  }
+
+}
+
+var _default = new BeerView();
+
+exports.default = _default;

@@ -1,0 +1,24 @@
+.information {
+  font-size: 2rem;
+  text-align: center;
+  padding: 1rem;
+}
+.info {
+  animation: fadeIn ease-out 1.5s;
+  padding: 0.5rem;
+  border: 1.5px solid black;
+  &__type {
+    font-style: italic;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+  }
+  &__content {
+    font-size: 1.1rem;
+    color: black;
+  }
+  &__ingredient {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: black;
+  }
+}
